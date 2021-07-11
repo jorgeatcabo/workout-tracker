@@ -26,17 +26,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
 //     console.log(message);
 //   });
 
-// app.post("/submit", ({body}, res) => {
-//   db.Book.create(body)
-//     .then(({_id}) => db.Library.findOneAndUpdate({}, { $push: { books: _id } }, { new: true }))
-//     .then(dbLibrary => {
-//       res.json(dbLibrary);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
-
 // app.get("/books", (req, res) => {
 //   db.Book.find({})
 //     .then(dbBook => {
@@ -62,24 +51,10 @@ app.get("/exercise", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/exercise.html"));
 });
 
-// app.get("/exercise", (req, res) => {
 
-// // db.Workout.findById(req.query.id)
-//   // .populate("exercises")
-//   //   .then(dbWorkout => {
-//   //     res.json(dbWorkout);
-//   //   })
-//   //   .catch(err => {
-//   //     res.json(err);
-//   //   });
-
-  
-// });
-
-
-app.put("/api/workouts/:id", ({body},req, res) => {
-  db.Exercise.create(body)
-    .then(({_id}) => db.Workout.findOneAndUpdate(req.params.id, { $push: { exercise: _id } }, { new: true }))
+app.put("/api/workouts/:id", (req, res) => {
+  db.Workout.findOneAndUpdate({ _id: req.params.id }, {
+    $push: { exercises: req.body }}, { new: true })
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -87,8 +62,6 @@ app.put("/api/workouts/:id", ({body},req, res) => {
       res.json(err);
     });
 });
-
-
 
 
 // app.get("/populated", (req, res) => {
