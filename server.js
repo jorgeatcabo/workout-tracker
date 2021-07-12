@@ -64,6 +64,18 @@ app.put("/api/workouts/:id", (req, res) => {
 });
 
 
+app.post("/api/workouts/", (req, res) => {
+  db.Workout.create({day: new Date(new Date().setDate(new Date().getDate()))})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+
+
 // app.get("/populated", (req, res) => {
 //   db.Library.find({})
 //     .populate("books")
