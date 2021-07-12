@@ -20,7 +20,7 @@ Workout Tracker
 Workout Tracker App based on Mongo database and Express where a consumer will reach their fitness goals more quickly when they track their workout progress. The user can view, create and track daily workouts, logging multiple exercises in a workout on a given day. He also be able to track the name, type, weight, sets, reps, and duration of exercise. If the exercise is a cardio exercise, he is able to track his distance traveled.
 
 # Installation
-"npm start" for running the application.
+"npm run watch" for running the application.
 
 # Usage
 When the user loads the page, it is shown the option to create a new workout or continue with their last workout.
@@ -36,10 +36,10 @@ The user is able to:
   * View the total duration of each workout from the past seven workouts.
 
 # Contribution
-It is necessary to know MongoDB for creating, reading and updating collections and documents, the knowledge of Mongoose ODM for modeling the application data and Express for routes. You can contribute reporting bugs, suggesting enhacements, pull requests. Best practices for class/id naming conventions, indentation, quality comments, etc.
+It is necessary to know MongoDB for creating, reading and updating collections and documents, the knowledge of Mongoose ODM for modeling the application data, and Express for routes. You can contribute reporting bugs, suggesting enhacements, pull requests. Best practices for class/id naming conventions, indentation, quality comments, etc.
 
 # Test
-For local testing use: "git clone git@github.com:jorgeatcabo/workout-tracker.git", “npm install” and "npm run watch".
+For local testing use: "git clone git@github.com:jorgeatcabo/workout-tracker.git", “npm install” and "npm run watch". For testing on a deployment URL use: https://rocky-mountain-06437.herokuapp.com/
 
 # Questions
 https://github.com/jorgeatcabo
