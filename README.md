@@ -36,7 +36,7 @@ The user is able to:
   * View the total duration of each workout from the past seven workouts.
 
 # Contribution
-
+It is necessary to know MongoDB for creating, reading and updating collections and documents, the knowledge of Mongoose ODM for modeling the application data and Express for routes. You can contribute reporting bugs, suggesting enhacements, pull requests. Best practices for class/id naming conventions, indentation, quality comments, etc.
 
 # Test
 
