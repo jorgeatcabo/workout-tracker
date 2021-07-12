@@ -37,13 +37,29 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
 // });
 
 app.get("/api/workouts", (req, res) => {
-  db.Workout.find({})
-    .then(dbWorkout => {
+
+  db.Workout.aggregate( [
+    {
+      $addFields: {
+        totalDuration: { $sum: "$exercises.duration" }
+      }
+    }
+ ] ).then(db.Workout.find({}))
+ .then(dbWorkout => {
       res.json(dbWorkout);
     })
     .catch(err => {
       res.json(err);
     });
+
+
+  // db.Workout.find({})
+  //   .then(dbWorkout => {
+  //     res.json(dbWorkout);
+  //   })
+  //   .catch(err => {
+  //     res.json(err);
+  //   });
 });
 
 app.get("/api/workouts/range", (req, res) => {
