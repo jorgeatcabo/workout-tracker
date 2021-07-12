@@ -18,24 +18,6 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
-// db.Library.create({ name: "Campus Library" })
-//   .then(dbLibrary => {
-//     console.log(dbLibrary);
-//   })
-//   .catch(({message}) => {
-//     console.log(message);
-//   });
-
-// app.get("/books", (req, res) => {
-//   db.Book.find({})
-//     .then(dbBook => {
-//       res.json(dbBook);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
-
 app.get("/api/workouts", (req, res) => {
 
   db.Workout.aggregate( [
@@ -52,18 +34,9 @@ app.get("/api/workouts", (req, res) => {
       res.json(err);
     });
 
-
-  // db.Workout.find({})
-  //   .then(dbWorkout => {
-  //     res.json(dbWorkout);
-  //   })
-  //   .catch(err => {
-  //     res.json(err);
-  //   });
 });
 
 app.get("/api/workouts/range", (req, res) => {
-  //db.Workout.aggregate.addFields({ totalDuration: { $sum: $exercises.duration } });
   
     db.Workout.aggregate( [
     {
@@ -78,23 +51,6 @@ app.get("/api/workouts/range", (req, res) => {
     .catch(err => {
       res.json(err);
     });
-
-
-  // db.Workout.aggregate.addFields({ totalDuration: { $sum: "$exercises.duration" } })
-  //   .then(dbWorkout => {
-  //     res.json(dbWorkout);
-  //   })
-  //   .catch(err => {
-  //     res.json(err);
-  //   });
-  
-  // db.Workout.find({})
-  //   .then(dbWorkout => {
-  //     res.json(dbWorkout);
-  //   })
-  //   .catch(err => {
-  //     res.json(err);
-  //   });
 });
 
 app.get("/exercise", (req, res) => {
@@ -127,19 +83,6 @@ app.post("/api/workouts/", (req, res) => {
       res.json(err);
     });
 });
-
-
-
-// app.get("/populated", (req, res) => {
-//   db.Library.find({})
-//     .populate("books")
-//     .then(dbLibrary => {
-//       res.json(dbLibrary);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
