@@ -46,9 +46,45 @@ app.get("/api/workouts", (req, res) => {
     });
 });
 
+app.get("/api/workouts/range", (req, res) => {
+  //db.Workout.aggregate.addFields({ totalDuration: { $sum: $exercises.duration } });
+  db.Workout.aggregate( [
+    {
+      $addFields: {
+        totalDuration: { $sum: "$exercises.duration" }
+      }
+    }
+ ] ).then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+
+
+  // db.Workout.aggregate.addFields({ totalDuration: { $sum: "$exercises.duration" } })
+  //   .then(dbWorkout => {
+  //     res.json(dbWorkout);
+  //   })
+  //   .catch(err => {
+  //     res.json(err);
+  //   });
+  
+  // db.Workout.find({})
+  //   .then(dbWorkout => {
+  //     res.json(dbWorkout);
+  //   })
+  //   .catch(err => {
+  //     res.json(err);
+  //   });
+});
 
 app.get("/exercise", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/exercise.html"));
+});
+
+app.get("/stats", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/stats.html"));
 });
 
 
